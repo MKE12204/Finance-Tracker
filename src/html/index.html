@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/transactions.css">
+    <link rel="stylesheet" href="../css/utils.css">
+    <link rel="icon" type="image/x-icon" href="../../img/favicon_count.svg">
+    <link rel="icon" type="image/png" href="../../img/favicon_count.svg">
+    <title>Finance Tracker</title>
+</head>
+<body>
+    <div class="top-controls">
+        <button id="theme-toggle" class="theme-btn">🌙</button>
+        <div class="lang-buttons">
+            <button onclick="changeLanguage('en')">EN</button>
+            <button onclick="changeLanguage('pl')">PL</button>
+            <button onclick="changeLanguage('ru')">RU</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 id="main-title">Финансовый трекер</h1>
+        
+        <div class="balance-card">
+            <p id="balance-label">Текущий баланс</p>
+            <h2 id="balance-display">0 $</h2>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-item">
+                <small id="income-label">Доходы</small>
+                <p id="total-income" style="color: #2ecc71;">0 $</p>
+            </div>
+            <div class="stat-item">
+                <small id="expense-label">Расходы</small>
+                <p id="total-expense" style="color: #e74c3c;">0 $</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <div class="input-section">
+            <div class="row">
+                <select id="type-select">
+                    <option value="income" id="opt-income">Доход (+)</option>
+                    <option value="expense" id="opt-expense">Расход (-)</option>
+                </select>
+                <select id="category-select">
+                    <option value="catSalary">Зарплата</option>
+                    <option value="catFood">Еда</option>
+                    <option value="catTransport">Транспорт</option>
+                    <option value="catEntertainment">Развлечения</option>
+                    <option value="catOther">Другое</option>
+                </select>
+            </div>
+            <input type="text" id="reason-input" placeholder="Описание">
+            <input type="number" id="amount-input" placeholder="Сумма">
+            <button id="add-btn">Добавить</button>
+        </div>
+
+        <div class="history-controls">
+            <input type="text" id="search-input" placeholder="Поиск..." oninput="updateUI()">
+            <button id="export-pdf" class="btn-util btn-pdf">PDF REPORT</button>
+        </div>
+
+        <div class="filter-section">
+            <button onclick="setFilter('all')" id="filter-all" class="filter-btn active">Все</button>
+            <button onclick="setFilter('income')" id="filter-inc" class="filter-btn">Доходы</button>
+            <button onclick="setFilter('expense')" id="filter-exp" class="filter-btn">Расходы</button>
+        </div>
+
+        <div class="history-container">
+            <h3 id="history-title">История</h3>
+            <ul id="transaction-list"></ul>
+        </div>
+    </div>
+
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal">
+            <p id="modal-text">Вы уверены?</p>
+            <div class="modal-btns">
+                <button id="confirm-delete" class="confirm-btn">Да</button>
+                <button id="cancel-delete" class="cancel-btn">Нет</button>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <small>Icons by <a href="https://tilda.cc" target="_blank">Tilda Publishing</a></small>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/translations.js"></script>
+    <script src="../js/state.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/main.js"></script>  
+</body>
+</html>
